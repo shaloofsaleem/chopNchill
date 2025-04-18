@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.log
+
+# Django stuff:
+db.sqlite3
+*.sqlite3
+media/
+uploads/
+
+# Environment variables
+.env
+
+# VSCode
+.vscode/
+
+# macOS and system files
+.DS_Store
+Thumbs.db
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.pip-wheel-metadata/
+
+# Static files (optional - if generated automatically)
+staticfiles/
+static_root/
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+
+# Migrations (optional if you want to reset migrations)
+*/migrations/*.pyc
+*/migrations/__pycache__/
+*/migrations/*.py
+
+# pyenv
+.python-version
+
+# mypy
+.mypy_cache/
+
+# Test results
+junit*.xml

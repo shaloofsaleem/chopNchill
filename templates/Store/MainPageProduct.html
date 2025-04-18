@@ -1,0 +1,12 @@
+{% extends 'base/basic.html' %}
+{% load static %}
+
+
+{% block title %}Home - My Website{% endblock %}
+
+{% block content %}
+    {% include "LandingPage/Search.html" %}
+    {% include "Store/Product/header.html" %}
+    {% include "Store/ProductList.html" %}
+    
+{% endblock %}

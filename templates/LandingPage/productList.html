@@ -1,0 +1,59 @@
+<div class="tab-content">
+    <!-- All Products Tab -->
+    <div id="tab-all" class="tab-pane fade show active">
+        <div class="row g-4">
+            {% for product in products %}
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="rounded position-relative fruite-item">
+                    <div class="fruite-img">
+                        <img src="{{ product.image.url }}" class="img-fluid w-100 rounded-top" alt="{{ product.name }}">
+                    </div>
+                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{ product.category.name }}</div>
+                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                        <h4>{{ product.name }}</h4>
+                        <p>{{ product.description|truncatewords:12 }}</p>
+                        <div class="d-flex justify-content-between flex-lg-wrap">
+                            <p class="text-dark fs-5 fw-bold mb-0">د.إ{{ product.price }} / {{ product.unit }}</p>
+                            <a href="https://wa.me/971552949878?text=I'm%20interested%20in%20{{ product.name }}%20(price:%20${{ product.price }})" 
+                            class="btn border border-success rounded-pill px-4 py-2 text-success"
+                            target="_blank">
+                            <i class="fab fa-whatsapp me-2 text-success"></i> Contact on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Tabs for each category -->
+    {% for category in categories %}
+    <div id="tab-{{ category.id }}" class="tab-pane fade">
+        <div class="row g-4">
+            {% for product in products %}
+                {% if product.category.id == category.id %}
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="rounded position-relative fruite-item">
+                        <div class="fruite-img">
+                            <img src="{{ product.image.url }}" class="img-fluid w-100 rounded-top" alt="{{ product.name }}">
+                        </div>
+                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{ product.category.name }}</div>
+                        <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                            <h4>{{ product.name }}</h4>
+                            <p>{{ product.description|truncatewords:12 }}</p>
+                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                <p class="text-dark fs-5 fw-bold mb-0">${{ product.price }} / {{ product.unit }}</p>
+                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>

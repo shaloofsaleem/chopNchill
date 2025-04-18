@@ -1,0 +1,25 @@
+<h1 class="fw-bold mb-0">Related Products</h1>
+<div class="vesitable">
+    <div class="owl-carousel vegetable-carousel justify-content-center">
+        {% for item in related_products %}
+        <div class="border border-primary rounded position-relative vesitable-item">
+            <div class="vesitable-img">
+                <img src="{{ item.image.url }}" class="img-fluid w-100 rounded-top" alt="{{ item.name }}">
+            </div>
+            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">
+                {{ item.category.name }}
+            </div>
+            <div class="p-4 pb-0 rounded-bottom">
+                <h4>{{ item.name }}</h4>
+                <p>{{ item.description|truncatewords:10 }}</p>
+                <div class="d-flex justify-content-between flex-lg-wrap">
+                    <p class="text-dark fs-5 fw-bold">{{ item.price }} AED / {{ item.unit }}</p>
+                    <a href="{% url 'product_detail' item.slug %}" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">
+                        <i class="fa fa-shopping-bag me-2 text-primary"></i> View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

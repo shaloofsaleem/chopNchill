@@ -1,0 +1,37 @@
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto mb-5" style="max-width: 700px;">
+            <h1 class="display-4">Bestseller Products</h1>
+            <p>Explore our top-selling picks, trusted and loved by our customers.</p>
+        </div>
+        <div class="row g-4">
+            {% for product in best_selling_products %}
+            <div class="col-lg-6 col-xl-4">
+                <div class="p-4 rounded bg-light">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <img src="{{ product.image.url }}" class="img-fluid rounded-circle w-100" alt="{{ product.name }}">
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="h5">{{ product.name }}</a>
+                            <div class="d-flex my-3">
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4 class="mb-3">{{ product.price }} د.إ</h4>
+                            <a href="https://wa.me/971552949878?text=I'm%20interested%20in%20{{ product.name }}%20(price:%20${{ product.price }})" 
+   class="btn border border-success rounded-pill px-3 py-2 text-success d-inline-flex align-items-center"
+   target="_blank" rel="noopener noreferrer">
+  <i class="fab fa-whatsapp me-2"></i>WhatsApp
+</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

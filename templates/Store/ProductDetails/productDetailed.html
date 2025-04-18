@@ -1,0 +1,130 @@
+
+
+
+
+{% extends 'base/basic.html' %}
+{% load static %}
+
+
+{% block title %}Home - My Website{% endblock %}
+
+{% block content %}
+{% include "LandingPage/Search.html" %}
+{% include "Store/ProductDetails/Header.html" %}
+<div class="container-fluid py-5 mt-5">
+  <div class="container py-5">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-8 col-xl-9">
+        <div class="row g-4">
+          <!-- Product Image -->
+          <div class="col-lg-6">
+            <div class="border rounded overflow-hidden">
+              <a href="{{ product.image.url }}" target="_blank">
+                <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name|default:'Product Image' }}" />
+              </a>
+            </div>
+          </div>
+
+          <!-- Product Info -->
+          <div class="col-lg-6">
+            <h4 class="fw-bold mb-3">{{ product.name }}</h4>
+            <p class="mb-3 text-muted">Category: {{ product.category.name }}</p>
+            <h5 class="fw-bold mb-3 text-success">د.إ{{ product.price }}</h5>
+
+            <p class="mb-4">{{ product.description|linebreaks }}</p>
+
+            <!-- Quantity Selector -->
+            <div class="input-group quantity mb-4" style="width: 120px;">
+              <button class="btn btn-sm btn-minus rounded-circle bg-light border"><i class="fa fa-minus"></i></button>
+              <input type="text" class="form-control form-control-sm text-center border-0" value="1" />
+              <button class="btn btn-sm btn-plus rounded-circle bg-light border"><i class="fa fa-plus"></i></button>
+            </div>
+
+            <!-- Contact via WhatsApp -->
+            <a href="https://wa.me/971552949878?text=I'm%20interested%20in%20{{ product.name }}%20(price:%20${{ product.price }})" 
+               class="btn border border-success rounded-pill px-4 py-2 text-success"
+               target="_blank">
+              <i class="fab fa-whatsapp me-2 text-success"></i> Contact on WhatsApp
+            </a>
+          </div>
+
+          <!-- Tabs -->
+          <div class="col-lg-12 mt-4">
+            <nav>
+              <div class="nav nav-tabs mb-3">
+                <button class="nav-link active" id="tab-desc" data-bs-toggle="tab" data-bs-target="#desc-tab" type="button">Description</button>
+                <button class="nav-link" id="tab-review" data-bs-toggle="tab" data-bs-target="#review-tab" type="button">Reviews</button>
+              </div>
+            </nav>
+
+            <div class="tab-content">
+              <!-- Description Tab -->
+              <div class="tab-pane fade show active" id="desc-tab" role="tabpanel">
+                <p>{{ product.description|linebreaks }}</p>
+                <div class="px-2">
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <div class="row text-center py-2 bg-light">
+                        <div class="col-6"><strong>Weight</strong></div>
+                        <div class="col-6">1 {{ product.unit|default:"unit" }}</div>
+                      </div>
+                      <div class="row text-center py-2">
+                        <div class="col-6"><strong>Origin</strong></div>
+                        <div class="col-6">Agro Farm</div>
+                      </div>
+                      <div class="row text-center py-2 bg-light">
+                        <div class="col-6"><strong>Quality</strong></div>
+                        <div class="col-6">Organic</div>
+                      </div>
+                      <div class="row text-center py-2">
+                        <div class="col-6"><strong>Check</strong></div>
+                        <div class="col-6">Healthy</div>
+                      </div>
+                      <div class="row text-center py-2 bg-light">
+                        <div class="col-6"><strong>Min Weight</strong></div>
+                        <div class="col-6">{{product.stock}} {{ product.unit|default:"unit" }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reviews Tab -->
+              <div class="tab-pane fade" id="review-tab" role="tabpanel">
+                {% if product.reviews.all %}
+                  {% for review in product.reviews.all %}
+                    <div class="d-flex border p-3 rounded mb-3">
+                      <img src="{{ review.user.profile_image.url }}" class="rounded-circle me-3" style="width: 60px; height: 60px;" alt="{{ review.user.username }}">
+                      <div>
+                        <strong>{{ review.user.get_full_name|default:review.user.username }}</strong>
+                        <small class="text-muted d-block">{{ review.created_at|date:"M d, Y" }}</small>
+                        <div class="text-warning mb-1">
+                          {% for i in "12345"|make_list %}
+                            <i class="fa fa-star{% if review.rating < forloop.counter %}-o{% endif %}"></i>
+                          {% endfor %}
+                        </div>
+                        <p class="mb-0">{{ review.comment }}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  <p>No reviews available for this product.</p>
+                {% endif %}
+              </div>
+
+            </div>
+          </div> <!-- Tabs End -->
+
+          
+
+        </div>
+      </div>
+      {% include "Store/ProductDetails/Sidbar.html" %}
+      
+      {% include 'Store/ProductDetails/Related-product.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+in
