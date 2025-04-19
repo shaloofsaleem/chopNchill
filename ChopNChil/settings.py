@@ -18,22 +18,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
-ALLOWED_HOSTS = [ ]
+# SECRET_KEY = os.getenv('SECRET_KEY')
+# DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+# ALLOWED_HOSTS = [ ]
 
 
 
-# # Quick-start development settings - unsuitable for production
-# # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-z4h*wgwxj$nny0+5@azmt_c=(-o(#*c_1#hbw5zbs-&mtnm-d_'
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-z4h*wgwxj$nny0+5@azmt_c=(-o(#*c_1#hbw5zbs-&mtnm-d_'
 
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 
 # Application definition
