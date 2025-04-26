@@ -10,11 +10,11 @@
         <div class="text-center mb-4">
             <ul class="nav nav-pills justify-content-center flex-wrap">
                 <li class="nav-item">
-                    <a class="nav-link active rounded-pill px-4 py-2 m-1" data-bs-toggle="pill" href="#tab-all">All Products</a>
+                    <a class="nav-link active rounded-pill px-3 py-2 m-1" data-bs-toggle="pill" href="#tab-all">All Products</a>
                 </li>
                 {% for category in categories %}
                 <li class="nav-item">
-                    <a class="nav-link rounded-pill px-4 py-2 m-1" data-bs-toggle="pill" href="#tab-{{ category.id }}">{{ category.name }}</a>
+                    <a class="nav-link rounded-pill px-3 py-2 m-1" data-bs-toggle="pill" href="#tab-{{ category.id }}">{{ category.name }}</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -25,27 +25,27 @@
 
             <!-- All Products -->
             <div id="tab-all" class="tab-pane fade show active">
-                <div class="row g-4">
+                <div class="row g-3">
                     {% for product in products %}
-                    <div class="col-6 col-lg-3">
+                    <div class="col-6 col-md-4 col-lg-3">
                         <div class="rounded position-relative fruite-item bg-white shadow-sm h-100">
                             <div class="fruite-img">
                                 {% if product.image %}
                                 <img src="{{ product.image.url }}" class="img-fluid w-100 rounded-top" alt="{{ product.name }}">
                                 {% endif %}
                             </div>
-                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
+                            <div class="text-white bg-secondary px-2 py-1 rounded position-absolute" style="top: 10px; left: 10px; font-size: 0.75rem;">
                                 {{ product.category.name }}
                             </div>
-                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                <h5 class="fw-bold text-success">{{ product.name }}</h5>
-                                <p class="small text-muted">{{ product.description|truncatechars:80 }}</p>
+                            <div class="p-3 border border-secondary border-top-0 rounded-bottom">
+                                <h6 class="fw-bold text-success mb-2">{{ product.name }}</h6>
+                                <p class="small text-muted mb-3 d-none d-md-block">{{ product.description|truncatechars:80 }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark fw-bold">د.إ{{ product.price }}</span>
+                                    <span class="text-dark fw-bold small">د.إ{{ product.price }}</span>
                                     <a href="https://wa.me/971552949878?text=I'm%20interested%20in%20{{ product.name }}%20(price:%20د.إ{{ product.price }})" 
                                        class="btn btn-outline-success btn-sm rounded-pill d-inline-flex align-items-center"
                                        target="_blank" rel="noopener noreferrer">
-                                        <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                                        <i class="fab fa-whatsapp me-2"></i>Chat
                                     </a>
                                 </div>
                             </div>
@@ -58,28 +58,28 @@
             <!-- Category Tabs -->
             {% for category in categories %}
             <div id="tab-{{ category.id }}" class="tab-pane fade">
-                <div class="row g-4">
+                <div class="row g-3">
                     {% for product in products %}
                         {% if product.category.id == category.id %}
-                        <div class="col-6 col-lg-3">
+                        <div class="col-6 col-md-4 col-lg-3">
                             <div class="rounded position-relative fruite-item bg-white shadow-sm h-100">
                                 <div class="fruite-img">
                                     {% if product.image %}
                                     <img src="{{ product.image.url }}" class="img-fluid w-100 rounded-top" alt="{{ product.name }}">
                                     {% endif %}
                                 </div>
-                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
+                                <div class="text-white bg-secondary px-2 py-1 rounded position-absolute" style="top: 10px; left: 10px; font-size: 0.75rem;">
                                     {{ product.category.name }}
                                 </div>
-                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                    <h5 class="fw-bold text-success">{{ product.name }}</h5>
-                                    <p class="small text-muted">{{ product.description|truncatechars:80 }}</p>
+                                <div class="p-3 border border-secondary border-top-0 rounded-bottom">
+                                    <h6 class="fw-bold text-success mb-2">{{ product.name }}</h6>
+                                    <p class="small text-muted mb-3 d-none d-md-block">{{ product.description|truncatechars:80 }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <span class="text-dark fw-bold">د.إ{{ product.price }}</span>
+                                        <span class="text-dark fw-bold small">د.إ{{ product.price }}</span>
                                         <a href="https://wa.me/971552949878?text=I'm%20interested%20in%20{{ product.name }}%20(price:%20د.إ{{ product.price }})" 
                                            class="btn btn-outline-success btn-sm rounded-pill d-inline-flex align-items-center"
                                            target="_blank" rel="noopener noreferrer">
-                                            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                                            <i class="fab fa-whatsapp me-2"></i>Chat
                                         </a>
                                     </div>
                                 </div>
